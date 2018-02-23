@@ -88,10 +88,12 @@ public class FormationController : MonoBehaviour {
 			movingRight = false;
 		}
 
+        NextLevel();
+
 		//	If all of the enemy ships are dead, then we respawn them
-		if (AllMembersDead ()) {
-			SpawnUntilFull ();	//	Previously SpawnEnemies ();
-		}
+		//if (AllMembersDead ()) {
+		//	SpawnUntilFull ();	//	Previously SpawnEnemies ();
+		//}
 	}
 
 	//	This method returns the next available (free) position within the enemy's formation
@@ -121,4 +123,15 @@ public class FormationController : MonoBehaviour {
 		//	If none of the enemy's ships is alive, it returns true.
 		return true;
 	}
+
+    void NextLevel()
+    {
+        if (AllMembersDead())
+        {
+            LevelManager levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+            levelManager.LoadLevel("Win Screen");
+            //Destroy(gameObject);
+        }
+    }
+
 }
